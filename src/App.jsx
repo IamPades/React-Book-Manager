@@ -4,18 +4,20 @@ import WelcomePage from "./components/WelcomePage";
 import SetupPage from "./components/SetupPage";
 import MainMenuPage from "./components/MainMenuPage";
 import { InventoryProvider } from "./InventoryContext";
+import NewBooksPage from "./components/NewBooksPage";
 
 function App() {
   return (
     <InventoryProvider>
-      <Router>
+      <BrowserRouter>
         <Routes>
           <Route path="/" element={<WelcomePage />} />
           <Route path="/setup" element={<SetupPage />} />
           <Route path="/main-menu" element={<MainMenuPage />} />
-          {/* Other routes go here */}
+          <Route path="/enter-books" element={<NewBooksPage />} />
+          {/* Add other routes here as needed for your application */}
         </Routes>
-      </Router>
+      </BrowserRouter>
     </InventoryProvider>
   );
 }
