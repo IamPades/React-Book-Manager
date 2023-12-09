@@ -7,3 +7,4 @@ function QuitPage() {
     </div>
   );
 }
+export default QuitPage;

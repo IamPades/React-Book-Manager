@@ -40,3 +40,105 @@
 .read-the-docs {
   color: #888;
 }
+
+/* New styles for book manager */
+.inventory-overview, .book-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.book-overview, .book-item {
+  margin: 10px;
+  padding: 15px;
+  border-radius: 5px;
+  min-width: 200px;
+  box-shadow: 0 0px 12px rgba(0,0,0,0.2);
+  background: rgba(0,0,0,0.2); /* Added for a cleaner look */
+}
+
+input, select, button {
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  box-shadow: 0 0px 2px rgba(0,0,0,0.2);
+  width: 80%; /* Adjusted for better alignment */
+  display: block; /* Ensures proper alignment */
+  margin: 10px auto; /* Centers the elements */
+}
+
+button {
+  background-color: #646cffaa;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #888;
+}
+
+form {
+  text-align: center;
+  margin-top: 20px; /* Added space above the form */
+}
+
+/* Additional styling for form groups */
+.form-group {
+  margin-bottom: 15px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .inventory-overview, .book-list {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .book-overview, .book-item {
+    width: auto;
+  }
+
+  input, select, button {
+    width: 90%; /* Adjust width for smaller screens */
+  }
+}
+.main-menu {
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 600px;
+  margin: 20px auto;
+  text-align: center;
+
+}
+
+.main-menu h2 {
+  color: #646cff;
+  margin-bottom: 20px;
+}
+
+.main-menu-link {
+  display: inline-block;
+  background-color: #646cff;
+  color: white;
+  padding: 10px 15px;
+  margin: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.main-menu-link:hover {
+  background-color: #535bf2;
+  transform: translateY(-2px);
+}
+
+/* Responsive design for main menu */
+@media (max-width: 768px) {
+  .main-menu-link {
+    width: 80%;
+    margin: 10px 0;
+  }
+}
