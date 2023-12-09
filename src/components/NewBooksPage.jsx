@@ -9,10 +9,10 @@ function NewBooksPage() {
   const [bookDetails, setBookDetails] = useState({ title: '', author: '', isbn: '', price: '' });
   const [isBookAdded, setIsBookAdded] = useState(false);
   const [passwordError, setPasswordError] = useState('');
-  const { inventory, setInventory } = useContext(InventoryContext);
   const navigate = useNavigate();
   const correctPassword = 'pargol';
   const maxAttempts = 3;
+  const { inventory, setInventory, capacity } = useContext(InventoryContext);
 
   const handlePasswordSubmit = (e) => {
     e.preventDefault();
@@ -20,10 +20,10 @@ function NewBooksPage() {
       setIsBookAdded(false);
       setPasswordError('');
     } else {
-      setPasswordError('Incorrect password, try again.');
       setAttemptCount(attemptCount + 1);
-      if (attemptCount >= maxAttempts) {
-        navigate('/main-menu');
+      setPasswordError('Incorrect password, try again.');
+      if (attemptCount +1 >= maxAttempts) {
+      navigate('/main-menu');
       }
     }
   };
@@ -35,10 +35,15 @@ function NewBooksPage() {
 
   const handleBookSubmit = (e) => {
     e.preventDefault();
-    const newBook = new Book(bookDetails.title, bookDetails.author, bookDetails.isbn, parseFloat(bookDetails.price));
-    setInventory(prevInventory => [...prevInventory, newBook]);
-    setIsBookAdded(true);
-    setBookDetails({ title: '', author: '', isbn: '', price: '' }); // Reset form
+    if (inventory.length < capacity) {
+      const newBook = new Book(bookDetails.title, bookDetails.author, bookDetails.isbn, parseFloat(bookDetails.price));
+      setInventory(prevInventory => [...prevInventory, newBook]);
+      setIsBookAdded(true);
+      // Reset form fields
+      setBookDetails({ title: '', author: '', isbn: '', price: '' });
+    } else {
+      alert("Inventory is full. Cannot add more books.");
+    }
   };
 
   return (
@@ -94,6 +99,7 @@ function NewBooksPage() {
         )}
 
         {isBookAdded && <p>Book added successfully!</p>}
+        <Link to="/main-menu" className="back-link">Back to Main Menu</Link>
       </div>
   );
 }

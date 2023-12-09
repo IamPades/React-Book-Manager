@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { InventoryContext } from '../InventoryContext';
+import { Link } from 'react-router-dom';
 
 function DisplayBooksByAuthorPage() {
     const [author, setAuthor] = useState('');
@@ -32,6 +33,7 @@ function DisplayBooksByAuthorPage() {
                     </div>
                 ))}
             </div>
+            <Link to="/main-menu" className="back-link">Back to Main Menu</Link>
         </div>
     );
 }

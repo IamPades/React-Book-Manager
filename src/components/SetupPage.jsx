@@ -3,15 +3,20 @@ import { Link, useNavigate } from "react-router-dom";
 import { InventoryContext } from "../InventoryContext";
 
 function SetupPage() {
-    const [maxBooks, setMaxBooks] = useState(0);
-    const [isSet, setIsSet] = useState(false); // New state for confirmation message
-    const { setInventory } = useContext(InventoryContext);
-    const navigate = useNavigate(); // Added for navigation
+    const { setInventory, setCapacity, setMaxBooks } = useContext(InventoryContext);
+    const [maxBooks, setMaxBooksLocal] = useState(0);
+    const navigate = useNavigate();
 
     const handleSubmit = () => {
-        setInventory(Array(maxBooks).fill(null));
-        setIsSet(true); // Set confirmation message
-        // Optional: navigate('/main-menu'); // Uncomment to navigate automatically
+        const maxBooksNumber = parseInt(maxBooks);
+        if (maxBooksNumber > 0) {
+            setCapacity(maxBooksNumber); // Set capacity
+            setMaxBooks(maxBooksNumber); // Update maxBooks in context
+            alert("Inventory capacity set to " + maxBooksNumber + " books.");
+            navigate('/main-menu');
+        } else {
+            alert("Please enter a positive number for the inventory.");
+        }
     };
 
     return (
@@ -20,12 +25,11 @@ function SetupPage() {
             <input
                 type="number"
                 value={maxBooks}
-                onChange={(e) => setMaxBooks(e.target.value)}
-                placeholder="Maximum number of books"
+                onChange={(e) => setMaxBooksLocal(e.target.value)}
+                placeholder="Capacity"
             />
             <button onClick={handleSubmit}>Set Inventory</button>
-            {isSet && <p>Inventory set. Go to the main menu to add books.</p>} {/* Confirmation message */}
-            <Link to="/main-menu">Go to Main Menu</Link>
+            <Link to="/main-menu" className="back-link">Back to Main Menu</Link>
         </div>
     );
 }

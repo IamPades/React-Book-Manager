@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { InventoryContext } from '../InventoryContext';
+import { Link } from 'react-router-dom';
 
 function DisplayBooksUnderPricePage() {
     const [price, setPrice] = useState('');
@@ -7,7 +8,7 @@ function DisplayBooksUnderPricePage() {
     const [filteredBooks, setFilteredBooks] = useState([]);
 
     const handleSearch = () => {
-        const results = inventory.filter(book => book.getAttribute('price') <= price);
+        const results = inventory.filter(book => book.getAttribute('price') < price);
         setFilteredBooks(results);
     };
 
@@ -32,6 +33,7 @@ function DisplayBooksUnderPricePage() {
                     </div>
                 ))}
             </div>
+            <Link to="/main-menu" className="back-link">Back to Main Menu</Link>
         </div>
     );
 }

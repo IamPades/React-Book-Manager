@@ -1,11 +1,13 @@
 import React, { useState, useContext } from 'react';
 import { InventoryContext } from '../InventoryContext';
+import { Link } from 'react-router-dom';
 
 function UpdateBookPage() {
   const [selectedISBN, setSelectedISBN] = useState('');
   const [updatedBookDetails, setUpdatedBookDetails] = useState({ title: '', author: '', isbn: '', price: '' });
-  const { inventory, setInventory } = useContext(InventoryContext);
+  const { inventory, setInventory, maxBooks } = useContext(InventoryContext);
   const [updateSuccess, setUpdateSuccess] = useState(false);
+  const numberOfBooksInInventory = inventory.length;
 
   const handleSelectBook = (e) => {
     const isbn = e.target.value;
@@ -43,8 +45,10 @@ function UpdateBookPage() {
   return (
       <div>
         <h2>Update Book Information</h2>
-
-        {/* Enhanced display of book information */}
+        {/* Display inventory status */}
+        {/* Display inventory status */}
+          <p>Number of Books: {numberOfBooksInInventory} / {maxBooks} </p>
+        {/* Display inventory overview */}
         <div className="inventory-overview">
           {inventory.map((book, index) => (
               <div key={index} className="book-overview">
@@ -57,14 +61,14 @@ function UpdateBookPage() {
         </div>
 
         {/* Update book form */}
-        <form onSubmit={handleSubmit}>
-          <select onChange={handleSelectBook} value={selectedISBN}>
-            <option value="">Select a Book</option>
-            {inventory.map((book, index) => (
-                <option key={index} value={book.getAttribute('isbn')}>{book.getAttribute('title')}</option>
-            ))}
-          </select>
+        <select onChange={handleSelectBook} value={selectedISBN}>
+          <option value="">Select a Book</option>
+          {inventory.map((book, index) => (
+              <option key={index} value={book.getAttribute('isbn')}>{book.getAttribute('title')}</option>
+          ))}
+        </select>
 
+        <form onSubmit={handleSubmit}>
           <input
               type="text"
               name="title"
@@ -97,6 +101,9 @@ function UpdateBookPage() {
         </form>
 
         {updateSuccess && <p>Book updated successfully!</p>}
+
+        {/* Back link to Main Menu */}
+        <Link to="/main-menu" className="back-link">Back to Main Menu</Link>
       </div>
   );
 }
