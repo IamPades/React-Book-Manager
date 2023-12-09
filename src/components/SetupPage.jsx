@@ -3,15 +3,15 @@ import { Link, useNavigate } from "react-router-dom";
 import { InventoryContext } from "../InventoryContext";
 
 function SetupPage() {
-    const { setInventory, setCapacity, setMaxBooks } = useContext(InventoryContext);
-    const [maxBooks, setMaxBooksLocal] = useState(0);
+    const { setInventory, setCapacity, capacity } = useContext(InventoryContext);
+    const [maxBooks, setMaxBooksLocal] = useState('');
     const navigate = useNavigate();
 
     const handleSubmit = () => {
         const maxBooksNumber = parseInt(maxBooks);
         if (maxBooksNumber > 0) {
-            setCapacity(maxBooksNumber); // Set capacity
-            setMaxBooks(maxBooksNumber); // Update maxBooks in context
+            setCapacity(maxBooksNumber);
+            setInventory([]); // Reset inventory
             alert("Inventory capacity set to " + maxBooksNumber + " books.");
             navigate('/main-menu');
         } else {
@@ -29,6 +29,7 @@ function SetupPage() {
                 placeholder="Capacity"
             />
             <button onClick={handleSubmit}>Set Inventory</button>
+            {capacity > 0 && <p>Current inventory capacity: {capacity}</p>}
             <Link to="/main-menu" className="back-link">Back to Main Menu</Link>
         </div>
     );

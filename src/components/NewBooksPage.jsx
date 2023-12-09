@@ -99,6 +99,7 @@ function NewBooksPage() {
         )}
 
         {isBookAdded && <p>Book added successfully!</p>}
+        <p>Books in Inventory: {inventory.length} / {capacity}</p>
         <Link to="/main-menu" className="back-link">Back to Main Menu</Link>
       </div>
   );

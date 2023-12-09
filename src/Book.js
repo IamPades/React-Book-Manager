@@ -45,6 +45,10 @@ class Book {
     console.log(`Title: ${this._attributes.title}, Author: ${this._attributes.author}, ISBN: ${this._attributes.isbn}, Price: ${this._attributes.price}`);
   }
 }
+/*
+Testing Methods
+let book1 = new Book("Canigula","Patcher","Damacus",0)
+book1.displayInfo()*/
 
 export default Book;
  

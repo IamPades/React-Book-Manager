@@ -33,15 +33,6 @@
   }
 }
 
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
-
-/* New styles for book manager */
 .inventory-overview, .book-list {
   display: flex;
   flex-wrap: wrap;
@@ -54,19 +45,21 @@
   padding: 15px;
   border-radius: 5px;
   min-width: 200px;
-  box-shadow: 0 0px 12px rgba(0,0,0,0.2);
-  background: rgba(0,0,0,0.2); /* Added for a cleaner look */
+  background:  #8888;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+
+.book-overview:hover, .book-item:hover {
+  transform: scale(1.05);
 }
 
 input, select, button {
-  margin: 10px;
   padding: 10px;
-  border-radius: 5px;
   box-sizing: border-box;
-  box-shadow: 0 0px 2px rgba(0,0,0,0.2);
-  width: 80%; /* Adjusted for better alignment */
-  display: block; /* Ensures proper alignment */
-  margin: 10px auto; /* Centers the elements */
+  width: 80%;
+  display: block;
+  margin: 10px auto;
 }
 
 button {
@@ -77,20 +70,14 @@ button {
 }
 
 button:hover {
-  background-color: #888;
+  background-color: #000000;
 }
 
 form {
   text-align: center;
-  margin-top: 20px; /* Added space above the form */
+  margin-top: 20px;
 }
 
-/* Additional styling for form groups */
-.form-group {
-  margin-bottom: 15px;
-}
-
-/* Responsive design */
 @media (max-width: 768px) {
   .inventory-overview, .book-list {
     flex-direction: column;
@@ -102,9 +89,10 @@ form {
   }
 
   input, select, button {
-    width: 90%; /* Adjust width for smaller screens */
+    width: 90%;
   }
 }
+
 .main-menu {
   border-radius: 8px;
   padding: 20px;
@@ -131,19 +119,16 @@ form {
 }
 
 .main-menu-link:hover {
-  background-color: #535bf2;
+  background-color: rgba(0, 0, 0, 0.53);
   transform: translateY(-2px);
 }
 
-/* Responsive design for main menu */
 @media (max-width: 768px) {
   .main-menu-link {
     width: 80%;
     margin: 10px 0;
   }
 }
-
-/* ... existing styles ... */
 
 .back-link {
   display: inline-block;
@@ -155,4 +140,29 @@ form {
 
 .back-link:hover {
   text-decoration: underline;
+}
+
+.welcome-container, .quit-container {
+  text-align: center;
+  padding: 50px;
+  color : #646cff ;
+  background-color: #000000;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.setup-link {
+  display: inline-block;
+  background-color: #646cff;
+  color: white;
+  padding: 10px 15px;
+  margin-top: 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.setup-link:hover {
+  background-color: #000000;
+  transform: translateY(-2px);
 }
