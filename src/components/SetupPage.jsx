@@ -2,23 +2,31 @@ import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { InventoryContext } from "../InventoryContext";
 
+// SetupPage component for setting up the inventory capacity
 function SetupPage() {
+    // Accessing and setting state from context
     const { setInventory, setCapacity, capacity } = useContext(InventoryContext);
+    // Local state for managing maximum number of books
     const [maxBooks, setMaxBooksLocal] = useState('');
+    // Hook for programmatically navigating to other routes
     const navigate = useNavigate();
 
+    // Function to handle form submission
     const handleSubmit = () => {
+        // Parsing the input to a number
         const maxBooksNumber = parseInt(maxBooks);
+        // Checking and setting the inventory capacity
         if (maxBooksNumber > 0) {
             setCapacity(maxBooksNumber);
             setInventory([]); // Reset inventory
             alert("Inventory capacity set to " + maxBooksNumber + " books.");
-            navigate('/main-menu');
+            navigate('/main-menu'); // Navigate to the main menu
         } else {
             alert("Please enter a positive number for the inventory.");
         }
     };
 
+    // Render method returns the JSX for the component
     return (
         <div>
             <h2>Setup Bookstore</h2>
@@ -35,4 +43,5 @@ function SetupPage() {
     );
 }
 
+// Exporting the component for use in other parts of the application
 export default SetupPage;

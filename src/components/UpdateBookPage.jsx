@@ -2,21 +2,28 @@ import React, { useState, useContext } from 'react';
 import { InventoryContext } from '../InventoryContext';
 import { Link, useNavigate} from 'react-router-dom';
 
+// UpdateBookPage component for updating book details in the inventory
 function UpdateBookPage() {
+  // State hooks for managing various aspects of the page
   const [selectedISBN, setSelectedISBN] = useState('');
   const [updatedBookDetails, setUpdatedBookDetails] = useState({ title: '', author: '', isbn: '', price: '' });
+  // Context for accessing inventory data
   const { inventory, setInventory, capacity } = useContext(InventoryContext);
   const [updateSuccess, setUpdateSuccess] = useState(false);
   const [password, setPassword] = useState('');
   const [attemptCount, setAttemptCount] = useState(0);
+  // Hook for programmatically navigating to other routes
   const navigate = useNavigate();
+  // Constants for password validation
   const correctPassword = 'pargol';
   const maxAttempts = 3;
 
+  // Function to remove a book from the inventory
   const removeBook = (isbnToRemove) => {
     setInventory(inventory.filter(book => book.getAttribute('isbn') !== isbnToRemove));
   };
 
+  // Function to handle the selection of a book for updating
   const handleSelectBook = (e) => {
     const isbn = e.target.value;
     setSelectedISBN(isbn);
@@ -31,11 +38,13 @@ function UpdateBookPage() {
     }
   };
 
+  // Function to handle changes in the update form inputs
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUpdatedBookDetails(prev => ({ ...prev, [name]: value }));
   };
 
+  // Function to submit updated book details
   const handleSubmit = (e) => {
     e.preventDefault();
     setInventory(inventory.map(book => {
@@ -50,6 +59,7 @@ function UpdateBookPage() {
     setUpdateSuccess(true);
   };
 
+  // Function to handle password submission for accessing the update feature
   const handlePasswordSubmit = (e) => {
     e.preventDefault();
     if (password === correctPassword) {
@@ -63,8 +73,10 @@ function UpdateBookPage() {
     }
   };
 
+  // Check if inventory is empty
   const isInventoryEmpty = inventory.length === 0;
 
+  // Render method returns the JSX for the component
   return (
       <div>
         <h2>Update Inventory</h2>
@@ -119,4 +131,5 @@ function UpdateBookPage() {
   );
 }
 
+// Exporting the component for use in other parts of the application
 export default UpdateBookPage;

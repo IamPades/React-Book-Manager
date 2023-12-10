@@ -3,17 +3,22 @@ import { Link, useNavigate } from 'react-router-dom';
 import { InventoryContext } from '../InventoryContext';
 import Book from '../Book';
 
+// NewBooksPage component for adding new books to the inventory
 function NewBooksPage() {
+  // State hooks for managing various aspects of the page
   const [password, setPassword] = useState('');
   const [attemptCount, setAttemptCount] = useState(0);
   const [bookDetails, setBookDetails] = useState({ title: '', author: '', isbn: '', price: '' });
   const [isBookAdded, setIsBookAdded] = useState(false);
   const [passwordError, setPasswordError] = useState('');
+  // Hook for programmatically navigating to other routes
   const navigate = useNavigate();
+  // Constants for password validation and inventory limits
   const correctPassword = 'pargol';
   const maxAttempts = 3;
+  // Accessing inventory data and functions from context
   const { inventory, setInventory, capacity } = useContext(InventoryContext);
-
+  // Function to handle password submission
   const handlePasswordSubmit = (e) => {
     e.preventDefault();
     if (password === correctPassword) {
@@ -28,11 +33,13 @@ function NewBooksPage() {
     }
   };
 
+  // Function to handle changes in book detail inputs
   const handleBookDetailsChange = (e) => {
     const { name, value } = e.target;
     setBookDetails(prev => ({ ...prev, [name]: value }));
   };
 
+  // Function to handle book submission
   const handleBookSubmit = (e) => {
     e.preventDefault();
     if (inventory.length < capacity) {
@@ -46,6 +53,7 @@ function NewBooksPage() {
     }
   };
 
+  // Render method returns the JSX for the component
   return (
       <div>
         <h2>Enter New Books</h2>
@@ -105,4 +113,5 @@ function NewBooksPage() {
   );
 }
 
+// Exporting the component for use in other parts of the application
 export default NewBooksPage;

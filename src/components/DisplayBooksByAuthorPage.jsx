@@ -2,16 +2,24 @@ import React, { useState, useContext } from 'react';
 import { InventoryContext } from '../InventoryContext';
 import { Link } from 'react-router-dom';
 
+// Component for displaying books filtered by author
 function DisplayBooksByAuthorPage() {
+    // State hook for managing author input
     const [author, setAuthor] = useState('');
+    // Accessing inventory data from context
     const { inventory } = useContext(InventoryContext);
+    // State hook for managing the filtered list of books
     const [filteredBooks, setFilteredBooks] = useState([]);
 
+    // Function to handle search and filter books by author
     const handleSearch = () => {
+        // Filtering books where the author matches the input, case-insensitive
         const results = inventory.filter(book => book.getAttribute('author').toLowerCase() === author.toLowerCase());
+        // Updating the state with the filtered results
         setFilteredBooks(results);
     };
 
+    // Render method returns the JSX for the component
     return (
         <div>
             <h2>Display Books by Author</h2>
@@ -38,4 +46,5 @@ function DisplayBooksByAuthorPage() {
     );
 }
 
+// Exporting the component for use in other parts of the application
 export default DisplayBooksByAuthorPage;
