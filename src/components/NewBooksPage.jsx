@@ -18,6 +18,7 @@ function NewBooksPage() {
   const maxAttempts = 3;
   // Accessing inventory data and functions from context
   const { inventory, setInventory, capacity } = useContext(InventoryContext);
+
   // Function to handle password submission
   const handlePasswordSubmit = (e) => {
     e.preventDefault();
@@ -53,7 +54,7 @@ function NewBooksPage() {
     }
   };
 
-  // Render method returns the JSX for the component
+  // Render NewBooksPage's JSX
   return (
       <div>
         <h2>Enter New Books</h2>
@@ -113,5 +114,4 @@ function NewBooksPage() {
   );
 }
 
-// Exporting the component for use in other parts of the application
 export default NewBooksPage;

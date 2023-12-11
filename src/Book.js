@@ -29,7 +29,7 @@ class Book {
     }
   }
 
-  // Counts of created books
+  // Display number of Book Object Created
   static getNumberOfCreatedBooks() {
     return Book.bookCount;
   }
@@ -40,15 +40,16 @@ class Book {
            this._attributes.price === otherBook.getAttribute('price');
   }
 
-  // Method to display book information using console.log
+  // Method to display book information
   displayInfo() {
     console.log(`Title: ${this._attributes.title}, Author: ${this._attributes.author}, ISBN: ${this._attributes.isbn}, Price: ${this._attributes.price}`);
   }
 }
+
 /*
-Testing Methods
 let book1 = new Book("Canigula","Patcher","Damacus",0)
-book1.displayInfo()*/
+book1.displayInfo()
+*/
 
 export default Book;
  

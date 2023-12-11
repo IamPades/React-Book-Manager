@@ -131,5 +131,4 @@ function UpdateBookPage() {
   );
 }
 
-// Exporting the component for use in other parts of the application
 export default UpdateBookPage;

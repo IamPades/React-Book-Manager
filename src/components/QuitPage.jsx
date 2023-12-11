@@ -1,6 +1,6 @@
-// QuitPage component for the quit or exit screen of the application
+// Bookstore's Exit Page
 function QuitPage() {
-    // Render method returns the JSX for the component
+    // Render QuitPage'JSX
     return (
         <div className="quit-container">
             <h2>Thank You for Using the Bookstore Manager</h2>
@@ -9,5 +9,4 @@ function QuitPage() {
     );
 }
 
-// Exporting the component for use in other parts of the application
 export default QuitPage;

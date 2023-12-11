@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-// MainMenuPage component for the main navigation menu
+// Displays Navigation Links to other components
 function MainMenuPage() {
-    // Render method returns the JSX for the component
+    // Render MainMenuPage's JSX
     return (
         <div className="main-menu">
             <h2>Main Menu</h2>
@@ -21,5 +21,4 @@ function MainMenuPage() {
     );
 }
 
-// Exporting the component for use in other parts of the application
 export default MainMenuPage;

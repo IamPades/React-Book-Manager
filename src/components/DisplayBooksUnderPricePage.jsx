@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { InventoryContext } from '../InventoryContext';
 import { Link } from 'react-router-dom';
 
-// Component for displaying books under a specified price
+// DisplayBooksUnderPrice's Logic to display books under a certain price
 function DisplayBooksUnderPricePage() {
     // State hook for managing price input
     const [price, setPrice] = useState('');
@@ -11,15 +11,14 @@ function DisplayBooksUnderPricePage() {
     // State hook for managing the filtered list of books
     const [filteredBooks, setFilteredBooks] = useState([]);
 
-     // Function to handle search and filter books by price
+     // Core Logic that Filters books where the price is less than the input price
     const handleSearch = () => {
-        // Filtering books where the price is less than the input price
         const results = inventory.filter(book => book.getAttribute('price') < price);
         // Updating the state with the filtered results
         setFilteredBooks(results);
     };
 
-    // Render method returns the JSX for the component
+    // Displays DisplayBooksUnderPricePage
     return (
         <div>
             <h2>Display Books Under a Certain Price</h2>
@@ -46,5 +45,5 @@ function DisplayBooksUnderPricePage() {
     );
 }
 
-// Exporting the component for use in other parts of the application
+
 export default DisplayBooksUnderPricePage;
