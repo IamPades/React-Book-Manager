@@ -46,10 +46,10 @@ class Book {
   }
 }
 
-/*
-let book1 = new Book("Canigula","Patcher","Damacus",0)
-book1.displayInfo()
-*/
+
+/*let book1 = new Book("Canigula","Patcher","Damacus",0)
+book1.displayInfo()*/
+
 
 export default Book;
  
