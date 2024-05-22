@@ -1,6 +1,7 @@
-import React, { useState, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { InventoryContext } from "../InventoryContext";
+// src/components/SetupPage.jsx
+import React, { useState, useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { InventoryContext } from '../InventoryContext';
 
 // SetupPage's Logic to handle Inventory Capacity
 function SetupPage() {
@@ -16,11 +17,10 @@ function SetupPage() {
         if (maxBooksLocal > 0) {
             setCapacity(maxBooksLocal);
             setInventory([]); // Inventory is reset when Capacity is changed
-            alert("Inventory capacity set to " + maxBooksLocal + " books.");
+            alert('Inventory capacity set to ' + maxBooksLocal + ' books.');
             navigate('/main-menu'); // Navigates to main menu using useNavigate from react-router-dom
-
         } else {
-            alert("Please enter a positive number for the inventory.");
+            alert('Please enter a positive number for the inventory.');
         }
     };
 
@@ -36,8 +36,10 @@ function SetupPage() {
             />
             <button onClick={handleSubmit}>Set Inventory</button>
             {capacity > 0 && <p>Capacity: {capacity}</p>} {/* Conditional rendering of Inventory Capacity */}
-            <Link to="/main-menu" className="back-link">Main Menu</Link> {/* Declarative navigation to main menu using Link from react-router-dom */}
-
+            <Link to="/main-menu" className="back-link">
+                Main Menu
+            </Link>{' '}
+            {/* Declarative navigation to main menu using Link from react-router-dom */}
         </div>
     );
 }

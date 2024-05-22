@@ -1,0 +1,55 @@
+Deploy the Online Bookstore Management System on your local Development environment
+o Web Application running
+o API running listening and servicing requests from the Web Application
+o Database storing the information (MySQL or MongoDB)
+
+
+Create use case diagrams to represent system interactions.
+Develop class diagrams for data modeling.
+Specify system behavior through sequence diagrams
+
+Admin:
+o Manage book inventory (add, update, delete books).
+
+Customer:
+o Create and manage a user account.
+o Browse books by category, author, or genre.
+o Search for books by keywords (title, description, author).
+o Add books to the shopping cart.
+o Place and track orders.
+o View order history
+
+Book Inventory (only for Admin Role)
+- Add/Update/Delete Books:
+o Include details such as title, author, genre, price, and quantity in stock.
+o Upload book cover images - Optional
+o Specify whether a book is new or used.
+Order Management (for Customers)
+
+
+Shopping Cart:
+o Allow customers to add, update, and remove items.
+o Calculate and display the total price.
+
+
+Order Placement:
+o Enable customers to place orders securely.
+
+User Authentication and Authorization
+
+User Registration/Login:
+o Secure user registration
+o Allow users to log in using email and password.
+
+Role-Based Access Control:
+o Admins have access to all features.
+o Customers have access to their profile, order history, and shopping functionality.
+Search and Filtering
+
+Search Functionality:
+o Implement a search bar with autocomplete – Autocomplete is Optional
+o Allow searching by title, author, or genre
+
+
+Code Documentation:
+Document code to assist future development or maintenance.
