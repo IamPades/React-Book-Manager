@@ -1,55 +1,45 @@
 // src/AuthContext.jsx
 import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-const AuthContext = createContext();
+export const AuthContext = createContext();
 
-const AuthProvider = ({ children }) => {
-    const [auth, setAuth] = useState({ token: null, isAuthenticated: false });
-
-    useEffect(() => {
-        const token = localStorage.getItem('token');
-        if (token) {
-            setAuth({ token, isAuthenticated: true });
-            axios.defaults.headers.common['x-access-token'] = token;  // Set token in axios headers
-        }
-    }, []);
+export const AuthProvider = ({ children }) => {
+    const [authToken, setAuthToken] = useState(localStorage.getItem('token') || null);
+    const navigate = useNavigate();
 
     const login = async (username, password) => {
         try {
             const response = await axios.post('http://localhost:4001/login', { username, password });
-            const token = response.data.token;
-            setAuth({ token, isAuthenticated: true });
-            localStorage.setItem('token', token);  // Store token in local storage
-            axios.defaults.headers.common['x-access-token'] = token;  // Set token in axios headers
+            if (response.data.auth) {
+                setAuthToken(response.data.token);
+                localStorage.setItem('token', response.data.token);
+                navigate('/main-menu');  // Redirect to the main menu upon successful login
+            } else {
+                throw new Error('Authentication failed');
+            }
         } catch (error) {
-            console.error("Login failed", error);
-        }
-    };
-
-    const register = async (username, password) => {
-        try {
-            const response = await axios.post('http://localhost:4001/register', { username, password });
-            const token = response.data.token;
-            setAuth({ token, isAuthenticated: true });
-            localStorage.setItem('token', token);  // Store token in local storage
-            axios.defaults.headers.common['x-access-token'] = token;  // Set token in axios headers
-        } catch (error) {
-            console.error("Registration failed", error);
+            throw error;
         }
     };
 
     const logout = () => {
-        setAuth({ token: null, isAuthenticated: false });
-        localStorage.removeItem('token');  // Remove token from local storage
-        delete axios.defaults.headers.common['x-access-token'];  // Remove token from axios headers
+        setAuthToken(null);
+        localStorage.removeItem('token');
+        navigate('/login');  // Redirect to the login page upon logout
     };
 
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            setAuthToken(token);
+        }
+    }, []);
+
     return (
-        <AuthContext.Provider value={{ auth, login, register, logout }}>
+        <AuthContext.Provider value={{ authToken, login, logout }}>
             {children}
         </AuthContext.Provider>
     );
 };
-
-export { AuthContext, AuthProvider };

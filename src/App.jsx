@@ -1,4 +1,3 @@
-// src/App.jsx
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './AuthContext';
@@ -17,24 +16,26 @@ import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
-      <AuthProvider>
-        <InventoryProvider>
-          <Router>
+      <Router>
+        <AuthProvider>
+          <InventoryProvider>
             <Routes>
               <Route path="/" element={<WelcomePage />} />
-              <Route path="/setup" element={<ProtectedRoute component={SetupPage} />} />
-              <Route path="/main-menu" element={<ProtectedRoute component={MainMenuPage} />} />
-              <Route path="/enter-books" element={<ProtectedRoute component={NewBooksPage} />} />
-              <Route path="/update-book" element={<ProtectedRoute component={UpdateBookPage} />} />
-              <Route path="/display-price" element={<ProtectedRoute component={DisplayBooksUnderPricePage} />} />
-              <Route path="/display-author" element={<ProtectedRoute component={DisplayBooksByAuthorPage} />} />
-              <Route path="/quit" element={<ProtectedRoute component={QuitPage} />} />
               <Route path="/login" element={<LoginForm />} />
               <Route path="/register" element={<RegisterForm />} />
+              <Route element={<ProtectedRoute />}>
+                <Route path="/setup" element={<SetupPage />} />
+                <Route path="/main-menu" element={<MainMenuPage />} />
+                <Route path="/enter-books" element={<NewBooksPage />} />
+                <Route path="/update-book" element={<UpdateBookPage />} />
+                <Route path="/display-price" element={<DisplayBooksUnderPricePage />} />
+                <Route path="/display-author" element={<DisplayBooksByAuthorPage />} />
+                <Route path="/quit" element={<QuitPage />} />
+              </Route>
             </Routes>
-          </Router>
-        </InventoryProvider>
-      </AuthProvider>
+          </InventoryProvider>
+        </AuthProvider>
+      </Router>
   );
 }
 

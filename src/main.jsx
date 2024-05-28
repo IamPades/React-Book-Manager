@@ -1,10 +1,12 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client' // The ReactDOM object provides methods that can be used to interact with the DOM
-import App from './App.jsx'
-import './App.css'
+// src/main.jsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';  // Ensure your project is using React 18+
+import App from './App.jsx';
+import './App.css';  // Ensure this CSS file exists and is correctly linked
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>
+);
